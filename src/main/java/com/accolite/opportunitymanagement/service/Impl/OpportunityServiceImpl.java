@@ -56,4 +56,17 @@ public class OpportunityServiceImpl implements OpportunityService  {
         String SQL = "DELETE FROM opportunity WHERE id =?";
         return jdbcTemplate.update(SQL,new Object[]{id});
     }
+
+    @Override
+    public List<Opportunity> searchOpportunity(String colName, String val) {
+        List<Opportunity> list = null;
+        String SQL = "";
+        if(colName.equals("description"))  SQL = "SELECT * FROM Opportunity WHERE description LIKE '%"+val+"%';";
+        if(colName.equals("location")) SQL = "SELECT * FROM Opportunity  WHERE location LIKE '%"+val+"%';";
+        if(colName.equals("skills"))  SQL = "SELECT * FROM Opportunity  WHERE skills LIKE '%"+val+"%';";
+        if(SQL != ""){
+           list = jdbcTemplate.query(SQL,new OpportunityMapper());
+        }
+        return list;
+    }
 }

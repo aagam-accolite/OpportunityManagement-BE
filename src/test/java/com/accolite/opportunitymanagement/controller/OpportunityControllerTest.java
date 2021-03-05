@@ -90,4 +90,21 @@ public class OpportunityControllerTest {
                 .accept(MediaType.APPLICATION_JSON_VALUE)
         ).andExpect(status().isOk());
     }
+
+    @Test
+    public void searchTest() throws Exception
+    {
+        ArrayList<Opportunity> opportunityArrayList = new ArrayList<>();
+        Opportunity opportunity = setOpportunityObject();
+        opportunityArrayList.add(opportunity);
+
+        Mockito.when(opportunityServiceImpl.searchOpportunity("description","SDE Intern")).thenReturn(opportunityArrayList);
+        mockMvc.perform(get("/opportunity/search/description/SDE Intern")).andExpect(status().isOk());
+
+        Mockito.when(opportunityServiceImpl.searchOpportunity("skills","Java")).thenReturn(opportunityArrayList);
+        mockMvc.perform(get("/opportunity/search/skills/Java")).andExpect(status().isOk());
+
+        Mockito.when(opportunityServiceImpl.searchOpportunity("location","Mumbai")).thenReturn(opportunityArrayList);
+        mockMvc.perform(get("/opportunity/search/location/Mumbai")).andExpect(status().isOk());
+    }
 }

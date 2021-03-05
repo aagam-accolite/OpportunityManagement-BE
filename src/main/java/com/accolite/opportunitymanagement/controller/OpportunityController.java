@@ -19,10 +19,19 @@ public class OpportunityController {
 
     @GetMapping(value = "/getAll")
     public List<Opportunity> getAllOpportunity(){
-        List<Opportunity> opportunityList = new ArrayList<>();
+        List<Opportunity> opportunityList;
         opportunityList = opportunityServiceImpl.getAllOpportunity();
         return opportunityList;
     }
+
+    @GetMapping(value = "/search/{colName}/{val}")
+    public List<Opportunity> searchOpportunity(@PathVariable("colName") String colName,@PathVariable("val")  String val)
+    {
+        List<Opportunity> opportunityList;
+        opportunityList = opportunityServiceImpl.searchOpportunity(colName,val);
+        return opportunityList;
+    }
+
 
     @PostMapping(value = "/add")
     public int addOpportunity(@RequestBody Opportunity opportunity)

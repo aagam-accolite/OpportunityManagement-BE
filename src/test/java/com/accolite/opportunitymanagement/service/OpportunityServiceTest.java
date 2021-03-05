@@ -73,6 +73,24 @@ public class OpportunityServiceTest {
         Assert.assertEquals(expectedVal,resultVal);
     }
 
+    @Test
+    public void searchTest()
+    {
+        ArrayList<Opportunity> opportunityArrayList = new ArrayList<>();
+        Opportunity opportunity = setOpportunityObject();
+        opportunityArrayList.add(opportunity);
+        Mockito.when(jdbcTemplate.query(
+                Mockito.anyString(),
+                Mockito.any(OpportunityMapper.class))).thenReturn(opportunityArrayList);
+        ArrayList<Opportunity> resultArrayList;
+        resultArrayList = (ArrayList<Opportunity>) opportunityServiceImpl.searchOpportunity("description","SDE Intern");
+        Assert.assertEquals(resultArrayList.size(),opportunityArrayList.size());
+        resultArrayList = (ArrayList<Opportunity>) opportunityServiceImpl.searchOpportunity("skills","Java");
+        Assert.assertEquals(resultArrayList.size(),opportunityArrayList.size());
+        resultArrayList = (ArrayList<Opportunity>) opportunityServiceImpl.searchOpportunity("location","Mumbai");
+        Assert.assertEquals(resultArrayList.size(),opportunityArrayList.size());
+    }
+
     private Opportunity setOpportunityObject()
     {
         Opportunity opportunity = new Opportunity();

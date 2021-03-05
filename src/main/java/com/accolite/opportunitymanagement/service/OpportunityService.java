@@ -14,4 +14,6 @@ public interface OpportunityService {
 
     public int delete(int id);
 
+    public List<Opportunity> searchOpportunity(String colName,String val);
+
 }
