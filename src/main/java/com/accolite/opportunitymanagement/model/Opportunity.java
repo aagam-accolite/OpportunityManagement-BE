@@ -18,17 +18,6 @@ public class Opportunity {
     public Opportunity() {
     }
 
-    public Opportunity(int id, String description, String location, String skills, int userId, int minExperience, int demand, Date date) {
-        this.id = id;
-        this.description = description;
-        this.location = location;
-        this.skills = skills;
-        this.userId = userId;
-        this.minExperience = minExperience;
-        this.demand = demand;
-        this.date = date;
-    }
-
     // Getter and Setter
 
     public int getId() {
@@ -95,19 +84,4 @@ public class Opportunity {
         this.date = date;
     }
 
-    // toString Method
-
-    @Override
-    public String toString() {
-        return "Opportunity{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", location='" + location + '\'' +
-                ", skills='" + skills + '\'' +
-                ", userId=" + userId +
-                ", minExperience=" + minExperience +
-                ", demand=" + demand +
-                ", date=" + date +
-                '}';
-    }
 }
