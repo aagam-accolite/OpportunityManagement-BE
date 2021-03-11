@@ -10,10 +10,12 @@ public interface OpportunityService {
 
     public int insert(Opportunity opportunity);
 
-    public int update(Opportunity opportunity,int id);
+    public int update(Opportunity opportunity);
 
     public int delete(int id);
 
     public List<Opportunity> searchOpportunity(String colName,String val);
+
+    public Opportunity getOpportunityById(int id);
 
 }

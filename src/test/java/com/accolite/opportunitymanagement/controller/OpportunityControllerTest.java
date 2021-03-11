@@ -40,7 +40,7 @@ public class OpportunityControllerTest {
         opportunity.setDescription("Software Developer");
         opportunity.setLocation("Mumbai");
         opportunity.setSkills("Spring Boot");
-        opportunity.setUserId(1);
+        opportunity.setUserEmail("aagamshah@accolitedigital.com");
         opportunity.setMinExperience(2);
         opportunity.setDemand(4);
         opportunity.setDate(new Date(System.currentTimeMillis()));
@@ -73,7 +73,7 @@ public class OpportunityControllerTest {
         Opportunity opportunity = setOpportunityObject();
         String jsonString = objectMapper.writeValueAsString(opportunity);
         Mockito.when(opportunityServiceImpl.insert(opportunity)).thenReturn(1);
-        mockMvc.perform(post("/opportunity/update/1")
+        mockMvc.perform(post("/opportunity/update")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(jsonString)
                 .accept(MediaType.APPLICATION_JSON_VALUE)

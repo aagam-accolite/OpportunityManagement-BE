@@ -9,7 +9,7 @@ public class Opportunity {
     private String description;
     private String location;
     private String skills;
-    private int userId;
+    private String userEmail;
     private int minExperience;
     private int demand;
     private Date date;
@@ -19,6 +19,15 @@ public class Opportunity {
     }
 
     // Getter and Setter
+
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
     public int getId() {
         return id;
@@ -52,14 +61,6 @@ public class Opportunity {
         this.skills = skills;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public int getMinExperience() {
         return minExperience;
     }
@@ -84,4 +85,20 @@ public class Opportunity {
         this.date = date;
     }
 
+    // ToString Method
+
+
+    @Override
+    public String toString() {
+        return "Opportunity{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", location='" + location + '\'' +
+                ", skills='" + skills + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", minExperience=" + minExperience +
+                ", demand=" + demand +
+                ", date=" + date +
+                '}';
+    }
 }
