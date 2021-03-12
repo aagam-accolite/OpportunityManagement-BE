@@ -27,8 +27,6 @@ public class OpportunityController {
 
     @GetMapping(value = "/getAll")
     public List<Opportunity> getAllOpportunity(@RequestHeader(value = "Email") String email){
-        //List<User> userList = userServiceImpl.getUserByEmail(email);
-        //auditServiceImpl.insertAudit(new Audit(userList.get(0).getName(),email,"GetAll","",""));
         List<Opportunity> opportunityList;
         opportunityList = opportunityServiceImpl.getAllOpportunity();
         return opportunityList;

@@ -20,7 +20,6 @@ public class Opportunity {
 
     // Getter and Setter
 
-
     public String getUserEmail() {
         return userEmail;
     }

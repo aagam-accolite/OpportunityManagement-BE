@@ -15,7 +15,7 @@ public class UserController {
     UserServiceImpl userServiceImpl;
 
     @GetMapping(value = "/getAll")
-    public List<User> getAllOpportunity(){
+    public List<User> getAllUser(){
         List<User> userList;
         userList = userServiceImpl.getAllUsers();
         return userList;

@@ -62,7 +62,6 @@ public class TrendsServiceImpl implements TrendsService {
         jdbcTemplate.query(SQL,resultSet -> {
             do {
                 String str = resultSet.getString(1);
-               // System.out.println(str);
                 String arr[] = str.split(",", 0);
                 for (int i = 0; i < arr.length; i++) {
                     if (hashMap.get(arr[i].toLowerCase()) == null) {
