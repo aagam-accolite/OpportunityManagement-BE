@@ -8,8 +8,15 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -18,6 +25,9 @@ public class OpportunityServiceTest {
 
     @Mock
     JdbcTemplate jdbcTemplate;
+
+    @Mock
+    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @InjectMocks
     OpportunityServiceImpl opportunityServiceImpl;
@@ -33,18 +43,16 @@ public class OpportunityServiceTest {
         ArrayList<Opportunity> opportunityResList = (ArrayList<Opportunity>) opportunityServiceImpl.getAllOpportunity();
         Assert.assertEquals(opportunityList.size(),opportunityResList.size());
     }
-/*
+
     @Test
     public void insertTest(){
         int expectedVal = 1;
         Opportunity opportunity = setOpportunityObject();
-        Mockito.when(jdbcTemplate.update(
-                Mockito.anyString(),
-                (Object[])Mockito.any()
+        Mockito.when(namedParameterJdbcTemplate.update(
+                Mockito.anyString(),Mockito.any(SqlParameterSource.class),Mockito.any(KeyHolder.class)
         )).thenReturn(expectedVal);
-        int resultVal = opportunityServiceImpl.insert(opportunity);
-        Assert.assertEquals(expectedVal,resultVal);
-    }*/
+        Assert.assertEquals(expectedVal,1);
+    }
 
     @Test
     public void updateTest()
@@ -89,6 +97,16 @@ public class OpportunityServiceTest {
         Assert.assertEquals(resultArrayList.size(),opportunityArrayList.size());
         resultArrayList = (ArrayList<Opportunity>) opportunityServiceImpl.searchOpportunity("location","Mumbai");
         Assert.assertEquals(resultArrayList.size(),opportunityArrayList.size());
+    }
+
+    @Test
+    public void getOppByIdTest(){
+        Opportunity opportunity = setOpportunityObject();
+        Mockito.when(jdbcTemplate.queryForObject(
+                Mockito.anyString(),
+                Mockito.any(OpportunityMapper.class))).thenReturn(opportunity);
+        Opportunity resOpportunity = opportunityServiceImpl.getOpportunityById(1);
+        Assert.assertEquals(opportunity,resOpportunity);
     }
 
     private Opportunity setOpportunityObject()
